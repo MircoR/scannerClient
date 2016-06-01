@@ -2,11 +2,11 @@
  * 
  */
 package zbw.ch.sysVentory;
-
+ 
 import java.io.IOException;
 
 /**
- * @author riedener
+ * @author M. Riedener
  *
  */
 public class Main {
@@ -20,20 +20,24 @@ public class Main {
 		// TODO Auto-generated method stub
 		// build GUI
 		UI_Main gui = new UI_Main();
+		GlobalData gData = new GlobalData();
 		
 		// Read localconfig file 
 		ReadConfigFile localConfig = new ReadConfigFile();
+		gData.setCompId(localConfig.CompanyID);
+
 		
 		// show state of local config file
 		gui.setStatusLocalConfig(localConfig.getStatusTxt());
 		
-		ExecutePowershellScript script = new ExecutePowershellScript();
-		script.runScript();
+		GetDataConn datacon = new GetDataConn(); 
+		Thread_Connection thread1_Conn = new Thread_Connection(1000, datacon, gData); 
+		thread1_Conn.start();
 
-		gui.setStatusLocalConfig("ps ausgeführt");
-		
-		
-	}
+		Thread_Scan thread2_Scan = new Thread_Scan(gData); 
+		thread2_Scan.start();
+	}		
+
 	
-	
+
 }

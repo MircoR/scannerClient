@@ -6,7 +6,6 @@ public class ExecutePowershellScript {
 
 	public ExecutePowershellScript()
 	{
-
 		
 	}
 	

@@ -12,18 +12,17 @@ import java.io.File;
 import java.util.Properties;
 
 /**
- * @author riedener
+ * @author M. Riedener
  *
  */
 public class ReadConfigFile {
 
-	private String CompanyID = "";
-	private String IPRange = "";
+	public String CompanyID = "";
 	private String StatusText = "unknown state";
+	private static String filepath = "./localconfig/ConfScanner.properties"; 
 	
 	private Properties properties; 
 	BufferedInputStream stream;	
-	
 	
 	public ReadConfigFile()
 	{
@@ -40,7 +39,7 @@ public class ReadConfigFile {
 	public void loadParameterFile() throws IOException
 	{
 		properties = new Properties();
-		stream = new BufferedInputStream(new FileInputStream("./localconfig/ConfScanner.properties"));
+		stream = new BufferedInputStream(new FileInputStream(filepath));
 	}
 	
 	public void readParameters() throws IOException
@@ -49,7 +48,6 @@ public class ReadConfigFile {
 		{
 			properties.load(stream);
 			this.CompanyID = properties.getProperty("CompanyID");	
-			this.IPRange = properties.getProperty("IPRange");
 			setStatusTxt("ok");
 			stream.close();			
 		} catch (IOException e) {
@@ -59,16 +57,14 @@ public class ReadConfigFile {
 		}
 	}
 	
-	public void writeParameter(String _CompID, String _IPRange) throws IOException
+	public void writeParameter(String _CompID) throws IOException
 	{
 		loadParameterFile();
 		try
 		{
-			properties.setProperty("CompanyID", _CompID);	
-			properties.setProperty("IPRange", _IPRange);	
-	        File f = new File("./localconfig/ConfScanner.properties");
+			properties.setProperty("CompanyID", _CompID);		
+	        File f = new File("filepath");
 	        OutputStream out = new FileOutputStream( f );
-	        properties.store(out, "This is an optional header comment string");
 			
 			out.close();			
 		} catch (IOException e) {
