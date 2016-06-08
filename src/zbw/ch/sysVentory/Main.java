@@ -10,7 +10,7 @@ import java.io.IOException;
  *
  */
 public class Main {
-
+	
 	/**
 	 * @param args
 	 * @throws IOException 
@@ -30,11 +30,12 @@ public class Main {
 		// show state of local config file
 		gui.setStatusLocalConfig(localConfig.getStatusTxt());
 		
-		GetDataConn datacon = new GetDataConn(); 
-		Thread_Connection thread1_Conn = new Thread_Connection(1000, datacon, gData); 
+//		GetDataConn datacon = new GetDataConn(); 
+		Thread_Connection thread1_Conn = new Thread_Connection(1000, gData, gui); 
 		thread1_Conn.start();
 
-		Thread_Scan thread2_Scan = new Thread_Scan(gData); 
+
+		Thread_Scan thread2_Scan = new Thread_Scan(gData, gui); 
 		thread2_Scan.start();
 	}		
 

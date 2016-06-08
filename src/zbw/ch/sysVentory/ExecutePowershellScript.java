@@ -2,14 +2,16 @@ package zbw.ch.sysVentory;
 
 import java.util.concurrent.TimeUnit;
 
-public class ExecutePowershellScript {
-
-	public ExecutePowershellScript()
+public class ExecutePowershellScript
+{
+	public GlobalData gData;
+	
+	public ExecutePowershellScript(GlobalData _gData)
 	{
-		
+		this.gData = _gData;
 	}
 	
-	public boolean runScript()
+	public boolean runScript() throws InterruptedException
 	{
 		PowerShell powerShell = null;
 		
@@ -18,10 +20,13 @@ public class ExecutePowershellScript {
 
 			long t0 = System.currentTimeMillis();
 			
-			String iprange = "./scan/Get-inventory.ps1 172.16.4.132/32";
-			System.out.println(powerShell.executeCommand(iprange).getCommandOutput());
+			String cmdParam = "./scan/PSinventory.ps1 " + this.gData.getIprange() + " " + this.gData.getCompId();
+			System.out.println(cmdParam);
+			System.out.println(powerShell.executeCommand(cmdParam).getCommandOutput());
 			
+			//powerShell.wait();			
 			powerShell.close();	
+
 
 			long t1 = System.currentTimeMillis();
 			long duration = TimeUnit.MILLISECONDS.toSeconds( t1 - t0 );

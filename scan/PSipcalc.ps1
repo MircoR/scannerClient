@@ -1,4 +1,4 @@
-#requires -version 2
+﻿#requires -version 2
 [CmdletBinding()]
 param(
     # CIDR notation network address, or using subnet mask. Examples: '192.168.0.1/24', '10.20.30.40/255.255.0.0'.

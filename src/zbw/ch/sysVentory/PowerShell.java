@@ -52,7 +52,7 @@ public class PowerShell {
     private ExecutorService threadpool;
     private static final int MAX_THREADS = 3; //standard output + error output + session close thread
     static final int WAIT_PAUSE = 10;
-    static final int MAX_WAIT = 100000;
+    static final int MAX_WAIT = 10000000; //160 minuten
 
     //Private constructor.
     private PowerShell() {
