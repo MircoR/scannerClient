@@ -25,7 +25,12 @@ public class Main {
 		// Read localconfig file 
 		ReadConfigFile localConfig = new ReadConfigFile();
 		gData.setCompId(localConfig.CompanyID);
-
+		
+		PostXML post = new PostXML(gData);
+		
+		post.getFileName();
+		post.deleteXMLFiles();
+/*
 		
 		// show state of local config file
 		gui.setStatusLocalConfig(localConfig.getStatusTxt());
@@ -37,6 +42,7 @@ public class Main {
 
 		Thread_Scan thread2_Scan = new Thread_Scan(gData, gui); 
 		thread2_Scan.start();
+	*/
 	}		
 
 	
