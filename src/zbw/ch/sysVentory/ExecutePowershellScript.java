@@ -20,11 +20,10 @@ public class ExecutePowershellScript
 
 			long t0 = System.currentTimeMillis();
 			
-			String cmdParam = "./scan/PSinventory.ps1 " + this.gData.getIprange() + " " + this.gData.getCompId();
+			String cmdParam = "./scan/PSinventory.ps1 " + this.gData.getIprange() + " " + this.gData.getCompId();			
 			System.out.println(cmdParam);
 			System.out.println(powerShell.executeCommand(cmdParam).getCommandOutput());
 			
-			//powerShell.wait();			
 			powerShell.close();	
 
 
