@@ -35,7 +35,8 @@ public class Thread_Connection extends Thread
         while(true)
         {
         	status = this.gData.getConnectionState();
-        	gui.setStatusConn(Integer.toString(status));
+        	setStatusText();
+//        	gui.setStatusConn(Integer.toString(status));
           try
           {
   			switch(status)
@@ -156,7 +157,31 @@ public class Thread_Connection extends Thread
 		}
 		responseString = "";		
 	}
+	
+	private void setStatusText() {
+		
+		String statusTxt = "";
+		switch(status)
+		{
+		case ERROR:
+			statusTxt = "ERROR";
+			break;
+		case WAIT:
+			statusTxt = "WAIT";
+			break;
+		case CONNECTION:
+			statusTxt = "GET PARAMETER";
+			break;
+		case TRANSFER_SENDXML:
+			statusTxt = "TRANSFER: SEND XML";
+			break;
+		default:
+			statusTxt = "WAIT";
+		
+		}
+		gui.setStatusConn(statusTxt);
+		
+	}	
 }
-
 
 

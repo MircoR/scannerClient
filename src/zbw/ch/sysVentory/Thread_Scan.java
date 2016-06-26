@@ -61,7 +61,7 @@ public class Thread_Scan extends Thread
 					this.gData.setScanState(RESETTIMER);
 					break;
 				case RESETTIMER:
-					rescheduleTimer.reschedule(gData.getIntervall()*1000); // *60*60
+					rescheduleTimer.reschedule(gData.getIntervall()*1000*60*60);
 					gData.settimerExpired(false);
 					this.gData.setScanState(WAIT);
 					break;
@@ -84,16 +84,13 @@ public class Thread_Scan extends Thread
 			statusTxt = "WAIT";
 			break;
 		case EXECUTESCAN:
-			statusTxt = "EXECUTESCAN";
+			statusTxt = "EXECUTE SCAN";
 			break;
 		case SAVEXMLDATA:
-			statusTxt = "SAVEXMLDATA";
-			break;
-		case TRANSFER_SENDXML:
-			statusTxt = "TRANSFER_SENDXML";
+			statusTxt = "SAVE XML DATA";
 			break;
 		case RESETTIMER:
-			statusTxt = "RESETTIMER";
+			statusTxt = "RESET TIMER";
 			break;
 		default:
 			statusTxt = "WAIT";
@@ -141,7 +138,7 @@ public class Thread_Scan extends Thread
 				if(firstcall)
 				{
 					firstcall = false;
-					rescheduleTimer.reschedule(gData.getIntervall()*1000);//*60*60*1000); umrechnung von h in ms
+					rescheduleTimer.reschedule(gData.getIntervall()*60*60*1000); // umrechnung von h in ms
 					gData.settimerExpired(false);
 					System.out.println("timer: firstcall");
 					return false;
@@ -155,7 +152,7 @@ public class Thread_Scan extends Thread
 					}
 					else
 					{
-						rescheduleTimer.reschedule(gData.getIntervall()*1000); // *60*60
+						rescheduleTimer.reschedule(gData.getIntervall()*1000*60*60);
 						gData.settimerExpired(false);
 					}
 				}
