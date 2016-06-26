@@ -42,7 +42,7 @@ public class Thread_Connection extends Thread
   			{
   				case WAIT:
   					counter++;
-  					if(gData.getConnectionState() != TRANSFER_SENDXML && counter > 30) // 30 entspricht etwa 30 sekunden pause
+  					if(gData.getConnectionState() != TRANSFER_SENDXML && counter > gData.getConnRefreshTime()) // 30 entspricht etwa 30 sekunden pause
   						gData.setConnectionState(CONNECTION);
   					
   					break;
@@ -62,11 +62,13 @@ public class Thread_Connection extends Thread
   					break;
   				case TRANSFER_SENDXML:
   					counter=0;
+  					
   					if(server.SendXML().isEmpty())
   					{
   						gData.setConnectionState(ERROR);
   						break;
   					}
+					System.out.println();
   					gData.setConnectionState(CONNECTION);
   					break;
   				case ERROR:
@@ -95,7 +97,7 @@ public class Thread_Connection extends Thread
 	{
 		try {
 			responseString = server.SendGetRequest();
-			System.out.println("response: " + responseString);
+	//		System.out.println("response: " + responseString);
 		} catch (IOException e) {
 			// e.printStackTrace();
 			return false;
@@ -144,6 +146,8 @@ public class Thread_Connection extends Thread
 				
 				System.out.println("iprang: " + iprange);
 				System.out.println("timeout: " + timeout);	
+				
+				gui.setParam(iprange + " - " + timeout + " - " + scanNow);
 			}
 			catch(Exception e)
 			{

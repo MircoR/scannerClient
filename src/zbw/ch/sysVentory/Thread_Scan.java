@@ -42,7 +42,7 @@ public class Thread_Scan extends Thread
 		while(true)
         {
 	       	status = this.gData.getScanState();
-        	gui.setStatusScan(Integer.toString(status));			
+        	setStatusText();			
 			switch(status)
 			{
 				case WAIT:
@@ -72,6 +72,37 @@ public class Thread_Scan extends Thread
         }
 	}
 	
+	private void setStatusText() {
+		
+		String statusTxt = "";
+		switch(status)
+		{
+		case ERROR:
+			statusTxt = "ERROR";
+			break;
+		case WAIT:
+			statusTxt = "WAIT";
+			break;
+		case EXECUTESCAN:
+			statusTxt = "EXECUTESCAN";
+			break;
+		case SAVEXMLDATA:
+			statusTxt = "SAVEXMLDATA";
+			break;
+		case TRANSFER_SENDXML:
+			statusTxt = "TRANSFER_SENDXML";
+			break;
+		case RESETTIMER:
+			statusTxt = "RESETTIMER";
+			break;
+		default:
+			statusTxt = "WAIT";
+		
+		}
+		gui.setStatusScan(statusTxt);
+		
+	}
+
 	public void runScript()
 	{
 		ExecutePowershellScript script = new ExecutePowershellScript(this.gData);

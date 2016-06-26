@@ -62,8 +62,8 @@ public class PostXML
 
 	public String getFileName()
 	{
-//		String filename = ".\\scan\\" + gData.getCompId() + ".xml";// Inventory06-13-2016-09-35-58.xml"
-		String filename = ".\\scan\\test.xml";// Inventory06-13-2016-09-35-58.xml"		
+		String filename = ".\\scan\\" + gData.getCompId() + ".xml";
+//		String filename = ".\\scan\\test.xml";// 
 		System.out.println("filename" + filename);
 		return filename;
 	}
@@ -74,7 +74,7 @@ public class PostXML
         File file = new File(filename);
     	if(file.exists())
     	{
-  //  		file.delete();
+    		file.delete();
     		System.out.print("deleted: ");
     	}
     	System.out.println(file);

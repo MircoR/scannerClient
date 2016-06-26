@@ -25,6 +25,16 @@ public class Main {
 		// Read localconfig file 
 		ReadConfigFile localConfig = new ReadConfigFile();
 		gData.setCompId(localConfig.CompanyID);
+		gData.setURL(localConfig.ServerIP);
+		try
+		{
+			gData.setConnRefreshTime(Integer.valueOf(localConfig.ConnRefreshTime));
+		}
+		catch(Exception e)
+		{
+			gData.setConnRefreshTime(30);
+		}
+		System.out.println("serverip:" + localConfig.ServerIP);
 
 		/* test
 		PostXML post = new PostXML(gData);	

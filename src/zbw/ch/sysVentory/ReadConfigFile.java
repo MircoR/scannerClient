@@ -18,6 +18,8 @@ import java.util.Properties;
 public class ReadConfigFile {
 
 	public String CompanyID = "";
+	public String ServerIP = "";
+	public String ConnRefreshTime = "";
 	private String StatusText = "unknown state";
 	private static String filepath = "./localconfig/ConfScanner.properties"; 
 	
@@ -47,8 +49,10 @@ public class ReadConfigFile {
 		try
 		{
 			properties.load(stream);
-			this.CompanyID = properties.getProperty("CompanyID");	
-			setStatusTxt("ok");
+			this.CompanyID = properties.getProperty("CompanyID");
+			this.ServerIP = properties.getProperty("ServerIP");
+			this.ConnRefreshTime = properties.getProperty("ConnRefreshTime");
+			setStatusTxt("ok -> " + "ConnRefresh: " + ConnRefreshTime);
 			stream.close();			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -83,4 +87,5 @@ public class ReadConfigFile {
 	{
 		this.StatusText = _txt;
 	}
+	
 }

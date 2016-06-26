@@ -13,18 +13,31 @@ public class GlobalData {
 	private boolean scanNow = false;
 	private boolean timerExpired = false;
 	private String URL;
+	private int ConnRefreshTime = 0;
 	
 	public GlobalData()
 	{
 		// default init
 		this.iprange = "";
 		this.intervall = -1;
-		this.URL = "http://localhost/sysVenturyClient";
-//		this.URL = "http://40.86.77.228";		
+		this.ConnRefreshTime = 30;
+
 	}
+	public int getConnRefreshTime()
+	{
+		return ConnRefreshTime;
+	}
+	public void setConnRefreshTime(int refreshtime)
+	{
+		ConnRefreshTime = refreshtime;
+	}	
 	public String getURL()
 	{
 		return URL;
+	}
+	public void setURL(String url)
+	{
+		this.URL = url;
 	}
 	public String getIprange()
 	{
